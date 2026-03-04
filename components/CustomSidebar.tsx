@@ -25,7 +25,7 @@ import { Loader2 } from "lucide-react";
 import { uploadProjectLogo } from "@/lib/project-utils";
 import { toast } from "sonner";
 import { generateQuoteEmailHtml } from "@/lib/email-templates/quote-submission";
-import { sendQuoteSubmissionEmail } from "@/lib/email";
+import { sendQuoteSubmissionEmail } from "@/lib/email_";
 
 const CustomSidebar = ({ isFactoryDirect }: any) => {
   const dispatch = useDispatch();

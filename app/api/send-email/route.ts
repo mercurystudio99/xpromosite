@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { generateQuoteEmailHtml } from '@/lib/email-templates/quote-submission';
 import { generateContactEmailHtml } from '@/lib/email-templates/contact-submission';
 import { generateQuoteConfirmationEmailHtml } from '@/lib/email-templates/quote-confirmation';
-import { sendQuoteSubmissionEmail, sendQuoteConfirmationEmail } from '@/lib/email';
+import { sendQuoteSubmissionEmail, sendQuoteConfirmationEmail } from '@/lib/email_';
 
 export async function POST(request: Request) {
   try {
