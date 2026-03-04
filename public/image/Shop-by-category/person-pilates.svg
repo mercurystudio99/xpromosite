@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   data-name="Layer 1"
+   viewBox="0 0 24 24"
+   version="1.1"
+   sodipodi:docname="person-pilates.svg"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs20954" />
+  <sodipodi:namedview
+     id="namedview20952"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="9.8333333"
+     inkscape:cx="0.30508475"
+     inkscape:cy="12"
+     inkscape:window-width="2560"
+     inkscape:window-height="1494"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="Layer_1" />
+  <path
+     d="M24,20.5c0,.828-.672,1.5-1.5,1.5H1.5c-.828,0-1.5-.672-1.5-1.5s.672-1.5,1.5-1.5H9.518c-.66-.129-1.29-.447-1.801-.958L2.455,12.124c-.449-.509-.615-1.181-.615-1.854,0-2.116,2.379-2.27,2.429-2.27H13.5c.828,0,1.5,.671,1.5,1.5s-.672,1.5-1.5,1.5h-5.346l3.481,3.793,3.262-3.376c.108-.112,.233-.207,.371-.28l5.524-2.959c.73-.39,1.639-.116,2.03,.614,.392,.73,.116,1.639-.614,2.03l-5.317,2.848s-3.673,3.877-4.205,4.354c-.839,.823-1.251,.866-1.819,.977h11.634c.828,0,1.5,.672,1.5,1.5ZM3.5,7c1.381,0,2.5-1.119,2.5-2.5s-1.119-2.5-2.5-2.5S1,3.119,1,4.5s1.119,2.5,2.5,2.5Z"
+     id="path20949"
+     style="fill:#05172d;fill-opacity:1" />
+</svg>

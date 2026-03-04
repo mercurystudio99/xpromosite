@@ -1,0 +1,51 @@
+# Xpromo Robots.txt - Enhanced for SEO
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://xpromo.com.au/api/sitemap-index
+Sitemap: https://xpromo.com.au/api/sitemap-products
+Sitemap: https://xpromo.com.au/api/sitemap-categories
+Sitemap: https://xpromo.com.au/api/sitemap-pages
+
+# Block admin and API routes from indexing (except allowed APIs)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+
+# Block user account pages
+Disallow: /user/my-account
+Disallow: /user/my-orders
+
+# Allow important public pages and APIs
+Allow: /(user)/allproducts/
+Allow: /(user)/categories/
+Allow: /(user)/brands/
+Allow: /(user)/blog/
+
+# Allow sitemaps and important APIs for search engines
+Allow: /api/sitemap
+Allow: /api/google-merchant-feed
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block unwanted bots
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
