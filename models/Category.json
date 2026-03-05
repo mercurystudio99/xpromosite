@@ -1,0 +1,56 @@
+[
+  {
+    "_id": "65f100000000000000000001",
+    "name": "Apparel",
+    "slug": "apparel",
+    "description": "All clothing products",
+    "ancestors": [],
+    "isActive": true,
+    "isFeatured": true,
+    "displayOrder": 1,
+    "routePath": "shop-by-category"
+  },
+  {
+    "_id": "65f100000000000000000002",
+    "name": "T-Shirts",
+    "slug": "t-shirts",
+    "description": "Custom printed t-shirts",
+    "parentCategory": "65f100000000000000000001",
+    "ancestors": ["65f100000000000000000001"],
+    "isActive": true,
+    "isFeatured": true,
+    "displayOrder": 2,
+    "routePath": "shop-by-category"
+  },
+  {
+    "_id": "65f100000000000000000003",
+    "name": "Hoodies",
+    "slug": "hoodies",
+    "parentCategory": "65f100000000000000000001",
+    "ancestors": ["65f100000000000000000001"],
+    "isActive": true,
+    "isFeatured": false,
+    "displayOrder": 3,
+    "routePath": "shop-by-category"
+  },
+  {
+    "_id": "65f100000000000000000004",
+    "name": "Eco Products",
+    "slug": "eco-products",
+    "ancestors": [],
+    "isActive": true,
+    "isFeatured": true,
+    "displayOrder": 4,
+    "routePath": "eco-products"
+  },
+  {
+    "_id": "65f100000000000000000005",
+    "name": "New Arrivals",
+    "slug": "new-arrivals",
+    "ancestors": [],
+    "isActive": true,
+    "isFeatured": true,
+    "displayOrder": 5,
+    "routePath": "new-arrivals"
+  }
+]

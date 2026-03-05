@@ -1,14 +1,16 @@
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import clientPromise from "@/lib/mongodb";
+// MONGODB CODE DISABLED - Commented out
+// import { MongoDBAdapter } from "@auth/mongodb-adapter";
+// import clientPromise from "@/lib/mongodb";
 import bcrypt from "bcryptjs";
-import User from "@/models/User";
-import { connectToDatabase } from "@/lib/mongodb";
+// import User from "@/models/User";
+// import { connectToDatabase } from "@/lib/mongodb";
 
 export const authOptions: NextAuthOptions = {
-  adapter: MongoDBAdapter(clientPromise),
+  // MONGODB CODE DISABLED - Adapter commented out
+  // adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -25,30 +27,34 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        await connectToDatabase();
+        // MONGODB CODE DISABLED - Database operations commented out
+        // await connectToDatabase();
+        // 
+        // const user = await User.findOne({ email: credentials.email });
+        // 
+        // if (!user || !user.password) {
+        //   throw new Error("User not found");
+        // }
+        // 
+        // const isPasswordCorrect = await bcrypt.compare(
+        //   credentials.password,
+        //   user.password
+        // );
+        // 
+        // if (!isPasswordCorrect) {
+        //   throw new Error("Invalid password");
+        // }
+        // 
+        // return {
+        //   id: user._id.toString(),
+        //   name: user.name,
+        //   email: user.email,
+        //   image: user.image,
+        //   role: user.role,
+        // };
         
-        const user = await User.findOne({ email: credentials.email });
-        
-        if (!user || !user.password) {
-          throw new Error("User not found");
-        }
-        
-        const isPasswordCorrect = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-        
-        if (!isPasswordCorrect) {
-          throw new Error("Invalid password");
-        }
-        
-        return {
-          id: user._id.toString(),
-          name: user.name,
-          email: user.email,
-          image: user.image,
-          role: user.role,
-        };
+        // Placeholder - authentication disabled
+        throw new Error("Authentication disabled - MongoDB not available");
       },
     }),
   ],
@@ -62,22 +68,26 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, account, profile }) {
       if (account?.provider === "google") {
         try {
-          await connectToDatabase();
+          // MONGODB CODE DISABLED - Database operations commented out
+          // await connectToDatabase();
+          // 
+          // const existingUser = await User.findOne({ email: user.email });
+          // 
+          // if (existingUser) {
+          //   if (!existingUser.role) {
+          //     await User.updateOne(
+          //       { email: user.email },
+          //       { $set: { role: "user" } }
+          //     );
+          //   }
+          //   
+          //   user.role = existingUser.role || "user";
+          // } else {
+          //   user.role = "user";
+          // }
           
-          const existingUser = await User.findOne({ email: user.email });
-          
-          if (existingUser) {
-            if (!existingUser.role) {
-              await User.updateOne(
-                { email: user.email },
-                { $set: { role: "user" } }
-              );
-            }
-            
-            user.role = existingUser.role || "user";
-          } else {
-            user.role = "user";
-          }
+          // Default role assignment
+          user.role = "user";
         } catch (error) {
           console.error("Error in Google sign in callback:", error);
           return true;
@@ -100,14 +110,18 @@ export const authOptions: NextAuthOptions = {
       
       if (!token.role && token.id) {
         try {
-          await connectToDatabase();
+          // MONGODB CODE DISABLED - Database operations commented out
+          // await connectToDatabase();
+          // 
+          // const dbUser = await User.findById(token.id);
+          // if (dbUser && dbUser.role) {
+          //   token.role = dbUser.role;
+          // } else {
+          //   token.role = "user";
+          // }
           
-          const dbUser = await User.findById(token.id);
-          if (dbUser && dbUser.role) {
-            token.role = dbUser.role;
-          } else {
-            token.role = "user";
-          }
+          // Default role assignment
+          token.role = "user";
         } catch (error) {
           console.error("Error fetching user role for token:", error);
           token.role = "user";
@@ -122,11 +136,15 @@ export const authOptions: NextAuthOptions = {
     createUser: async ({ user }) => {
       if (!user.role) {
         try {
-          await connectToDatabase();
-          await User.updateOne(
-            { _id: user.id },
-            { $set: { role: "user" } }
-          );
+          // MONGODB CODE DISABLED - Database operations commented out
+          // await connectToDatabase();
+          // await User.updateOne(
+          //   { _id: user.id },
+          //   { $set: { role: "user" } }
+          // );
+          
+          // Default role assignment
+          user.role = "user";
         } catch (error) {
           console.error("Error setting default role for new user:", error);
         }

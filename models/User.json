@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "password": "$2b$10$KbQi6mXGkY5c3KqG7f3YjOe4rP5Q8y8ZzQjL5GJqR1dM8k3vP2l9a",
+    "image": "https://example.com/uploads/admin-avatar.png",
+    "role": "admin",
+    "status": "active",
+    "createdAt": "2026-03-01T08:00:00.000Z",
+    "updatedAt": "2026-03-01T08:00:00.000Z"
+  },
+  {
+    "name": "John Smith",
+    "email": "john.smith@example.com",
+    "password": "$2b$10$7e8fGkL2mN3pQ4rS5tU6vO9wXyZ0aBcDeFgHiJkLmNoPqRsTuVwXy",
+    "image": "https://example.com/uploads/user1.png",
+    "role": "user",
+    "status": "active",
+    "createdAt": "2026-03-02T10:15:00.000Z",
+    "updatedAt": "2026-03-02T10:15:00.000Z"
+  },
+  {
+    "name": "Emily Johnson",
+    "email": "emily.johnson@example.com",
+    "password": "$2b$10$AbCdEfGhIjKlMnOpQrStUvWxYz1234567890abcdefgHiJkLmNo",
+    "image": "https://example.com/uploads/user2.png",
+    "role": "user",
+    "status": "active",
+    "createdAt": "2026-03-03T12:30:00.000Z",
+    "updatedAt": "2026-03-03T12:30:00.000Z"
+  },
+  {
+    "name": "Michael Brown",
+    "email": "michael.brown@example.com",
+    "password": "$2b$10$ZyXwVuTsRqPoNmLkJiHgFeDcBa0987654321mnopqrstUvWxYz",
+    "image": "https://example.com/uploads/user3.png",
+    "role": "user",
+    "status": "inactive",
+    "createdAt": "2026-03-04T09:45:00.000Z",
+    "updatedAt": "2026-03-04T09:45:00.000Z"
+  },
+  {
+    "name": "Sarah Williams",
+    "email": "sarah.williams@example.com",
+    "password": "$2b$10$LmNoPqRsTuVwXyZAbCdEfGhIjKlMnOpQrStUvWxYz1234567890ab",
+    "image": "https://example.com/uploads/user4.png",
+    "role": "user",
+    "status": "active",
+    "createdAt": "2026-03-05T07:20:00.000Z",
+    "updatedAt": "2026-03-05T07:20:00.000Z"
+  }
+]

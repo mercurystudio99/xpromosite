@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth/next';
-import User from '@/models/User';
-import { connectToDatabase } from '@/lib/mongodb';
+// MONGODB CODE DISABLED - Commented out
+// import User from '@/models/User';
+// import { connectToDatabase } from '@/lib/mongodb';
 import { authOptions } from '@/app/api/auth/options';
 import bcrypt from 'bcryptjs';
 
@@ -18,39 +19,44 @@ export async function GET(request: NextRequest) {
       );
     }
     
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // await connectToDatabase();
     
     // Get search and filter parameters from query string
     const { searchParams } = new URL(request.url);
-    const search = searchParams.get('search') || '';
-    const role = searchParams.get('role') || '';
-    const status = searchParams.get('status') || '';
+    // const search = searchParams.get('search') || '';
+    // const role = searchParams.get('role') || '';
+    // const status = searchParams.get('status') || '';
     
-    // Build filter object
-    const filter: any = {};
+    // MONGODB CODE DISABLED - All database queries commented out
+    // // Build filter object
+    // const filter: any = {};
+    // 
+    // // Add search condition if provided
+    // if (search) {
+    //   filter['$or'] = [
+    //     { name: { $regex: search, $options: 'i' } },
+    //     { email: { $regex: search, $options: 'i' } }
+    //   ];
+    // }
+    // 
+    // // Add role filter if provided
+    // if (role && role !== 'all') {
+    //   filter.role = role.toLowerCase();
+    // }
+    // 
+    // // Add status filter if provided
+    // if (status && status !== 'all') {
+    //   filter.status = status.toLowerCase();
+    // }
+    // 
+    // // Get users, excluding password field
+    // const users = await User.find(filter).select('-password').sort({ createdAt: -1 });
+    // 
+    // return NextResponse.json(users);
     
-    // Add search condition if provided
-    if (search) {
-      filter['$or'] = [
-        { name: { $regex: search, $options: 'i' } },
-        { email: { $regex: search, $options: 'i' } }
-      ];
-    }
-    
-    // Add role filter if provided
-    if (role && role !== 'all') {
-      filter.role = role.toLowerCase();
-    }
-    
-    // Add status filter if provided
-    if (status && status !== 'all') {
-      filter.status = status.toLowerCase();
-    }
-    
-    // Get users, excluding password field
-    const users = await User.find(filter).select('-password').sort({ createdAt: -1 });
-    
-    return NextResponse.json(users);
+    // Return empty result since MongoDB is disabled
+    return NextResponse.json([]);
   } catch (error: any) {
     console.error('Error fetching users:', error);
     return NextResponse.json(
@@ -73,7 +79,8 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // await connectToDatabase();
     
     // Get user data from request body
     const data = await request.json();
@@ -86,35 +93,43 @@ export async function POST(request: NextRequest) {
       );
     }
     
-    // Check if user with the same email already exists
-    const existingUser = await User.findOne({ email: data.email });
-    if (existingUser) {
-      return NextResponse.json(
-        { error: 'A user with this email already exists' },
-        { status: 409 }
-      );
-    }
+    // MONGODB CODE DISABLED - Database operations commented out
+    // // Check if user with the same email already exists
+    // const existingUser = await User.findOne({ email: data.email });
+    // if (existingUser) {
+    //   return NextResponse.json(
+    //     { error: 'A user with this email already exists' },
+    //     { status: 409 }
+    //   );
+    // }
     
     // Hash the password
     const hashedPassword = await bcrypt.hash(data.password, 12);
     
-    // Create user with validated fields
-    const newUser = await User.create({
-      name: data.name,
-      email: data.email,
-      password: hashedPassword,
-      role: data.role || 'user',
-      status: data.status || 'active',
-      image: data.image || null
-    });
+    // MONGODB CODE DISABLED - User creation commented out
+    // // Create user with validated fields
+    // const newUser = await User.create({
+    //   name: data.name,
+    //   email: data.email,
+    //   password: hashedPassword,
+    //   role: data.role || 'user',
+    //   status: data.status || 'active',
+    //   image: data.image || null
+    // });
+    // 
+    // // Return the new user without password
+    // const userResponse = {
+    //   ...newUser._doc,
+    //   password: undefined
+    // };
+    // 
+    // return NextResponse.json(userResponse, { status: 201 });
     
-    // Return the new user without password
-    const userResponse = {
-      ...newUser._doc,
-      password: undefined
-    };
-    
-    return NextResponse.json(userResponse, { status: 201 });
+    // Return error since MongoDB is disabled
+    return NextResponse.json(
+      { error: 'MongoDB disabled - User creation not available' },
+      { status: 503 }
+    );
   } catch (error: any) {
     console.error('Error creating user:', error);
     return NextResponse.json(

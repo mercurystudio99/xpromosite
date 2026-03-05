@@ -1,6 +1,8 @@
-import mongoose, { Schema, Document } from "mongoose";
+// MONGODB CODE DISABLED - Commented out
+// import mongoose, { Schema, Document } from "mongoose";
 
-export interface IProject extends Document {
+// MONGODB CODE DISABLED - Using interface without Document
+export interface IProject {
   projectFor: string;
   budget: string;
   quantity: number;
@@ -17,35 +19,40 @@ export interface IProject extends Document {
   updatedAt: Date;
 }
 
-const ProjectSchema: Schema = new Schema(
-  {
-    projectFor: { type: String, required: true },
-    budget: { type: String, required: true },
-    quantity: { type: Number, required: true },
-    deadline: { type: Date },
-    noDeadline: { type: Boolean, default: false },
-    logo: { type: String },
-    specialInstructions: { type: String },
-    name: { type: String, required: true },
-    company: { type: String, required: true },
-    phone: { type: String, required: true },
-    email: { 
-      type: String, 
-      required: true,
-      validate: {
-        validator: function(v: string) {
-          return /^\S+@\S+\.\S+$/.test(v);
-        },
-        message: 'Please enter a valid email address'
-      }
-    },
-    status: { 
-      type: String, 
-      enum: ['new', 'in-progress', 'completed', 'cancelled'], 
-      default: 'new'
-    },
-  },
-  { timestamps: true }
-);
+// MONGODB CODE DISABLED - Schema commented out
+// const ProjectSchema: Schema = new Schema(
+//   {
+//     projectFor: { type: String, required: true },
+//     budget: { type: String, required: true },
+//     quantity: { type: Number, required: true },
+//     deadline: { type: Date },
+//     noDeadline: { type: Boolean, default: false },
+//     logo: { type: String },
+//     specialInstructions: { type: String },
+//     name: { type: String, required: true },
+//     company: { type: String, required: true },
+//     phone: { type: String, required: true },
+//     email: { 
+//       type: String, 
+//       required: true,
+//       validate: {
+//         validator: function(v: string) {
+//           return /^\S+@\S+\.\S+$/.test(v);
+//         },
+//         message: 'Please enter a valid email address'
+//       }
+//     },
+//     status: { 
+//       type: String, 
+//       enum: ['new', 'in-progress', 'completed', 'cancelled'], 
+//       default: 'new'
+//     },
+//   },
+//   { timestamps: true }
+// );
 
-export default mongoose.models.Project || mongoose.model<IProject>("Project", ProjectSchema);
+// export default mongoose.models.Project || mongoose.model<IProject>("Project", ProjectSchema);
+
+// Placeholder export to prevent import errors
+const Project = null as any;
+export default Project;

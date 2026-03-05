@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import User from "@/models/User";
-import { connectToDatabase } from "@/lib/mongodb";
+// MONGODB CODE DISABLED - Commented out
+// import User from "@/models/User";
+// import { connectToDatabase } from "@/lib/mongodb";
 
 export async function POST(request: Request) {
   try {
@@ -15,32 +16,40 @@ export async function POST(request: Request) {
       );
     }
 
-    // Connect to MongoDB
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // // Connect to MongoDB
+    // await connectToDatabase();
 
-    // Check if user already exists
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return NextResponse.json(
-        { message: "User already exists" },
-        { status: 409 }
-      );
-    }
+    // // Check if user already exists
+    // const existingUser = await User.findOne({ email });
+    // if (existingUser) {
+    //   return NextResponse.json(
+    //     { message: "User already exists" },
+    //     { status: 409 }
+    //   );
+    // }
 
     // Hash password
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Create new user using User model
-    const newUser = await User.create({
-      name,
-      email,
-      password: hashedPassword,
-      image: null
-    });
+    // MONGODB CODE DISABLED - User creation commented out
+    // // Create new user using User model
+    // const newUser = await User.create({
+    //   name,
+    //   email,
+    //   password: hashedPassword,
+    //   image: null
+    // });
 
+    // return NextResponse.json(
+    //   { message: "User created successfully", userId: newUser._id },
+    //   { status: 201 }
+    // );
+    
+    // Return error since MongoDB is disabled
     return NextResponse.json(
-      { message: "User created successfully", userId: newUser._id },
-      { status: 201 }
+      { message: "MongoDB disabled - User registration not available" },
+      { status: 503 }
     );
   } catch (error) {
     console.error("Registration error:", error);

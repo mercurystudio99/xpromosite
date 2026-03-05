@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import mongoose from 'mongoose';
-import Product from '@/models/Product';
-import Category from '@/models/Category'; // Add Category import
-import { connectToDatabase } from '@/lib/mongodb';
+// MONGODB CODE DISABLED - Commented out
+// import mongoose from 'mongoose';
+// import Product from '@/models/Product';
+// import Category from '@/models/Category'; // Add Category import
+// import { connectToDatabase } from '@/lib/mongodb';
 import slugify from 'slugify';
 
 // GET - Fetch a single product by ID
@@ -11,34 +12,42 @@ export async function GET(
   { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
-    // Make sure we're connected to the database
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // // Make sure we're connected to the database
+    // await connectToDatabase();
     
-    const { productId } =await params;
+    const { productId } = await params;
     
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID format' },
-        { status: 400 }
-      );
-    }
+    // MONGODB CODE DISABLED - Validation and query commented out
+    // if (!mongoose.Types.ObjectId.isValid(productId)) {
+    //   return NextResponse.json(
+    //     { error: 'Invalid product ID format' },
+    //     { status: 400 }
+    //   );
+    // }
+    // 
+    // // Make sure mongoose is connected before executing the query
+    // if (mongoose.connection.readyState !== 1) {
+    //   throw new Error('Database connection not ready');
+    // }
+    // 
+    // const product = await Product.findById(productId)
+    // // .populate('categories', 'name slug');
+    // 
+    // if (!product) {
+    //   return NextResponse.json(
+    //     { error: 'Product not found' },
+    //     { status: 404 }
+    //   );
+    // }
+    // 
+    // return NextResponse.json(product);
     
-    // Make sure mongoose is connected before executing the query
-    if (mongoose.connection.readyState !== 1) {
-      throw new Error('Database connection not ready');
-    }
-    
-    const product = await Product.findById(productId)
-    // .populate('categories', 'name slug');
-    
-    if (!product) {
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json(product);
+    // Return error since MongoDB is disabled
+    return NextResponse.json(
+      { error: 'MongoDB disabled - Product not available' },
+      { status: 503 }
+    );
   } catch (error: any) {
     console.error('Error fetching product:', error);
     return NextResponse.json(
@@ -54,22 +63,11 @@ export async function PATCH(
   { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
-    // Make sure we're connected to the database
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // // Make sure we're connected to the database
+    // await connectToDatabase();
     
-    const { productId } =await params;
-    
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID format' },
-        { status: 400 }
-      );
-    }
-    
-    // Make sure mongoose is connected before executing the query
-    if (mongoose.connection.readyState !== 1) {
-      throw new Error('Database connection not ready');
-    }
+    const { productId } = await params;
     
     const body = await request.json();
     
@@ -78,20 +76,21 @@ export async function PATCH(
       body.slug = slugify(body.name, { lower: true, strict: true });
     }
     
-    // Check if the new slug already exists (for another product)
-    if (body.slug) {
-      const existingProduct = await Product.findOne({ 
-        slug: body.slug, 
-        _id: { $ne: productId } 
-      });
-      
-      if (existingProduct) {
-        return NextResponse.json(
-          { error: 'A product with this slug already exists' },
-          { status: 400 }
-        );
-      }
-    }
+    // MONGODB CODE DISABLED - Database operations commented out
+    // // Check if the new slug already exists (for another product)
+    // if (body.slug) {
+    //   const existingProduct = await Product.findOne({ 
+    //     slug: body.slug, 
+    //     _id: { $ne: productId } 
+    //   });
+    //   
+    //   if (existingProduct) {
+    //     return NextResponse.json(
+    //       { error: 'A product with this slug already exists' },
+    //       { status: 400 }
+    //     );
+    //   }
+    // }
     
     // Before updating product:
     body.showMOQ = typeof body.showMOQ === "boolean" ? body.showMOQ : false;
@@ -100,21 +99,28 @@ export async function PATCH(
     body.specifications = typeof body.specifications === "string" ? body.specifications : "";
     body.shippingInformation = typeof body.shippingInformation === "string" ? body.shippingInformation : "";
     
-    const product = await Product.findByIdAndUpdate(
-      productId,
-      { $set: body },
-      { new: true, runValidators: true }
-    )
-    // .populate('categories', 'name slug');
+    // MONGODB CODE DISABLED - Product update commented out
+    // const product = await Product.findByIdAndUpdate(
+    //   productId,
+    //   { $set: body },
+    //   { new: true, runValidators: true }
+    // )
+    // // .populate('categories', 'name slug');
+    // 
+    // if (!product) {
+    //   return NextResponse.json(
+    //     { error: 'Product not found' },
+    //     { status: 404 }
+    //   );
+    // }
+    // 
+    // return NextResponse.json(product);
     
-    if (!product) {
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
-    }
-    
-    return NextResponse.json(product);
+    // Return error since MongoDB is disabled
+    return NextResponse.json(
+      { error: 'MongoDB disabled - Product update not available' },
+      { status: 503 }
+    );
   } catch (error: any) {
     console.error('Error updating product:', error);
     return NextResponse.json(
@@ -130,35 +136,43 @@ export async function DELETE(
   { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
-    // Make sure we're connected to the database
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // // Make sure we're connected to the database
+    // await connectToDatabase();
     
-    const { productId } =await params;
+    const { productId } = await params;
     
-    if (!mongoose.Types.ObjectId.isValid(productId)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID format' },
-        { status: 400 }
-      );
-    }
+    // MONGODB CODE DISABLED - Database operations commented out
+    // if (!mongoose.Types.ObjectId.isValid(productId)) {
+    //   return NextResponse.json(
+    //     { error: 'Invalid product ID format' },
+    //     { status: 400 }
+    //   );
+    // }
+    // 
+    // // Make sure mongoose is connected before executing the query
+    // if (mongoose.connection.readyState !== 1) {
+    //   throw new Error('Database connection not ready');
+    // }
+    // 
+    // const product = await Product.findByIdAndDelete(productId);
+    // 
+    // if (!product) {
+    //   return NextResponse.json(
+    //     { error: 'Product not found' },
+    //     { status: 404 }
+    //   );
+    // }
+    // 
+    // return NextResponse.json(
+    //   { message: 'Product deleted successfully' },
+    //   { status: 200 }
+    // );
     
-    // Make sure mongoose is connected before executing the query
-    if (mongoose.connection.readyState !== 1) {
-      throw new Error('Database connection not ready');
-    }
-    
-    const product = await Product.findByIdAndDelete(productId);
-    
-    if (!product) {
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
-    }
-    
+    // Return error since MongoDB is disabled
     return NextResponse.json(
-      { message: 'Product deleted successfully' },
-      { status: 200 }
+      { error: 'MongoDB disabled - Product deletion not available' },
+      { status: 503 }
     );
   } catch (error: any) {
     console.error('Error deleting product:', error);

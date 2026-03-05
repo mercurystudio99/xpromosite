@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Premium Cotton T-Shirt",
+    "slug": "premium-cotton-tshirt",
+    "description": "High quality cotton t-shirt for printing.",
+    "price": 12.99,
+    "compareAtPrice": 18.99,
+    "images": [
+      { "url": "https://example.com/tshirt1.jpg", "position": 0 }
+    ],
+    "categories": ["65f100000000000000000002"],
+    "tags": ["cotton", "custom", "apparel"],
+    "isActive": true,
+    "isFeatured": true,
+    "brand": "BrandX",
+    "factoryDirect": true,
+    "budgetCategory": "standard",
+    "sku": "TSHIRT-001",
+    "showMOQ": true,
+    "moqMin": 50,
+    "moqMax": 500,
+    "colors": [
+      { "name": "Black", "hexCode": "#000000" },
+      { "name": "White", "hexCode": "#FFFFFF" }
+    ],
+    "priceTiers": [
+      { "quantity": 50, "price": 12.99 },
+      { "quantity": 100, "price": 10.99 }
+    ],
+    "productionTime": 7
+  }
+]
