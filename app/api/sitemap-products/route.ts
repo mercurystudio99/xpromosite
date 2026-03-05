@@ -1,23 +1,26 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Product from '@/models/Product';
-import Category from '@/models/Category';
-import { connectToDatabase } from '@/lib/mongodb';
+// MONGODB CODE DISABLED - Commented out
+// import Product from '@/models/Product';
+// import Category from '@/models/Category';
+// import { connectToDatabase } from '@/lib/mongodb';
 
 // Generate Product Sitemap (XML format)
 export async function GET(request: NextRequest) {
   try {
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // await connectToDatabase();
 
-    // Fetch all active products
-    const products = await Product.find({ isActive: true })
-      .select('slug updatedAt images')
-      .sort({ updatedAt: -1 })
-      .limit(50000); // Sitemap limit
+    // MONGODB CODE DISABLED - Database queries commented out
+    // // Fetch all active products
+    // const products = await Product.find({ isActive: true })
+    //   .select('slug updatedAt images')
+    //   .sort({ updatedAt: -1 })
+    //   .limit(50000); // Sitemap limit
 
-    // Fetch all active categories
-    const categories = await Category.find({ isActive: true })
-      .select('slug routePath updatedAt')
-      .sort({ updatedAt: -1 });
+    // // Fetch all active categories
+    // const categories = await Category.find({ isActive: true })
+    //   .select('slug routePath updatedAt')
+    //   .sort({ updatedAt: -1 });
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://xpromo.com.au';
 
@@ -27,45 +30,47 @@ export async function GET(request: NextRequest) {
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 `;
 
-    // Add products
-    for (const product of products) {
-      const productUrl = `${baseUrl}/(user)/allproducts/${product.slug}`;
-      const lastmod = product.updatedAt.toISOString().split('T')[0];
-      
-      xml += `  <url>
-    <loc>${productUrl}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-`;
+    // MONGODB CODE DISABLED - Product loop commented out
+    // // Add products
+    // for (const product of products) {
+    //   const productUrl = `${baseUrl}/(user)/allproducts/${product.slug}`;
+    //   const lastmod = product.updatedAt.toISOString().split('T')[0];
+    //   
+    //   xml += `  <url>
+    //     <loc>${productUrl}</loc>
+    //     <lastmod>${lastmod}</lastmod>
+    //     <changefreq>weekly</changefreq>
+    //     <priority>0.8</priority>
+    // `;
 
-      // Add product images to sitemap
-      if (product.images && product.images.length > 0) {
-        for (const image of product.images.slice(0, 5)) {
-          xml += `    <image:image>
-      <image:loc>${image.url}</image:loc>
-    </image:image>
-`;
-        }
-      }
+    //   // Add product images to sitemap
+    //   if (product.images && product.images.length > 0) {
+    //     for (const image of product.images.slice(0, 5)) {
+    //       xml += `    <image:image>
+    //       <image:loc>${image.url}</image:loc>
+    //     </image:image>
+    // `;
+    //     }
+    //   }
 
-      xml += `  </url>
-`;
-    }
+    //   xml += `  </url>
+    // `;
+    // }
 
-    // Add categories
-    for (const category of categories) {
-      const categoryUrl = `${baseUrl}/(user)/categories/${category.slug}`;
-      const lastmod = category.updatedAt.toISOString().split('T')[0];
-      
-      xml += `  <url>
-    <loc>${categoryUrl}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-`;
-    }
+    // MONGODB CODE DISABLED - Category loop commented out
+    // // Add categories
+    // for (const category of categories) {
+    //   const categoryUrl = `${baseUrl}/(user)/categories/${category.slug}`;
+    //   const lastmod = category.updatedAt.toISOString().split('T')[0];
+    //   
+    //   xml += `  <url>
+    //     <loc>${categoryUrl}</loc>
+    //     <lastmod>${lastmod}</lastmod>
+    //     <changefreq>weekly</changefreq>
+    //     <priority>0.7</priority>
+    //   </url>
+    // `;
+    // }
 
     // Add main pages
     const mainPages = [

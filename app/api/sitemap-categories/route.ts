@@ -1,50 +1,54 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Category from '@/models/Category';
-import { connectToDatabase } from '@/lib/mongodb';
+// MONGODB CODE DISABLED - Commented out
+// import Category from '@/models/Category';
+// import { connectToDatabase } from '@/lib/mongodb';
 
 // Generate Categories Sitemap (XML format)
 export async function GET(request: NextRequest) {
   try {
-    await connectToDatabase();
+    // MONGODB CODE DISABLED - Database operations commented out
+    // await connectToDatabase();
 
-    // Fetch all active categories
-    const categories = await Category.find({ isActive: true })
-      .select('slug routePath updatedAt image')
-      .sort({ updatedAt: -1 })
-      .limit(10000);
+    // MONGODB CODE DISABLED - Database queries commented out
+    // // Fetch all active categories
+    // const categories = await Category.find({ isActive: true })
+    //   .select('slug routePath updatedAt image')
+    //   .sort({ updatedAt: -1 })
+    //   .limit(10000);
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://xpromo.com.au';
 
-    // Build XML Sitemap
+    // Build XML Sitemap (empty since MongoDB is disabled)
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 `;
 
-    // Add categories
-    for (const category of categories) {
-      const categoryUrl = `${baseUrl}/(user)/categories/${category.slug}`;
-      const lastmod = category.updatedAt.toISOString().split('T')[0];
-      
-      xml += `  <url>
-    <loc>${categoryUrl}</loc>
-    <lastmod>${lastmod}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-`;
+    // MONGODB CODE DISABLED - Category loop commented out
+    // // Add categories
+    // for (const category of categories) {
+    //   const categoryUrl = `${baseUrl}/(user)/categories/${category.slug}`;
+    //   const lastmod = category.updatedAt.toISOString().split('T')[0];
+    //   
+    //   xml += `  <url>
+    //     <loc>${categoryUrl}</loc>
+    //     <lastmod>${lastmod}</lastmod>
+    //     <changefreq>weekly</changefreq>
+    //     <priority>0.8</priority>
+    // `;
 
-      // Add category image if available
-      if (category.image && category.image.url) {
-        xml += `    <image:image>
-      <image:loc>${category.image.url}</image:loc>
-      <image:title>${category.slug}</image:title>
-    </image:image>
-`;
-      }
+    //   // Add category image if available
+    //   if (category.image && category.image.url) {
+    //     xml += `    <image:image>
+    //       <image:loc>${category.image.url}</image:loc>
+    //       <image:title>${category.slug}</image:title>
+    //     </image:image>
+    // `;
+    //   }
 
-      xml += `  </url>
-`;
-    }
+    //   xml += `  </url>
+    // `;
+    // }
 
     xml += `</urlset>`;
 
