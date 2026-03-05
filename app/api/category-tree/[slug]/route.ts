@@ -45,7 +45,7 @@ export async function GET(
         _id: level1Category._id,
         name: level1Category.name,
         slug: level1Category.slug,
-        children: level2Categories.map(level2Cat => ({
+        children: level2Categories.map((level2Cat: any) => ({
           _id: level2Cat._id,
           name: level2Cat.name,
           slug: level2Cat.slug,
